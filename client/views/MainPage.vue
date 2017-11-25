@@ -32,7 +32,7 @@
             </select>
           </div>
 
-          <div class="controls" v-if="from && input">
+          <div class="controls" v-if="from && to && input">
             <button :disabled="procesing" type="button" @click="handleTransform">
               {{ processing ? 'Processing...' : 'Transform' }}
             </button>
@@ -53,6 +53,12 @@
               </option>  
             </select>
           </div>
+          <button 
+            v-copy="output" 
+            v-copy:callback="handleCopied" 
+            v-if="output">
+            Copy
+          </button>
         </div>
         <code-mirror v-model="output" :options="outputEditorOptions"></code-mirror>
       </div>
@@ -200,7 +206,7 @@ export default {
         notie.alert({
           type: 'error',
           text: message,
-          stay: true
+          time: 6
         })
       } else {
         this.output = output
@@ -210,6 +216,13 @@ export default {
 
     getPairsByFrom(from) {
       return PAIRS.filter(p => p.from === from)
+    },
+
+    handleCopied() {
+      notie.alert({
+        type: 'success',
+        text: 'Copied!'
+      })
     }
   },
 
@@ -242,6 +255,7 @@ export default {
       height: 40px
       display: flex
       align-items: center
+      justify-content: space-between
       border-bottom: 1px solid #e2e2e2
 
 .main-page

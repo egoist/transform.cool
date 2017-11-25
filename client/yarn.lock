@@ -3222,6 +3222,10 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
+modern-copy@^1.0.3:
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/modern-copy/download/modern-copy-1.0.3.tgz#1b0a3e8548316cae95e76f9f75cacb561d193b8e"
+
 ms@2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/ms/download/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -5073,6 +5077,12 @@ uuid@^2.0.2:
 uuid@^3.0.0:
   version "3.1.0"
   resolved "http://registry.npm.taobao.org/uuid/download/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
+
+v-copy@^0.1.0:
+  version "0.1.0"
+  resolved "http://registry.npm.taobao.org/v-copy/download/v-copy-0.1.0.tgz#05214524346be27bf149f10fff4660bbd7e69e67"
+  dependencies:
+    modern-copy "^1.0.3"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"
