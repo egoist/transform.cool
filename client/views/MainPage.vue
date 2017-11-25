@@ -37,7 +37,7 @@
         </label>
       </div>
 
-      <div class="controls">
+      <div class="controls" v-if="from && input">
         <button :disabled="procesing" type="button" @click="handleTransform">
           {{ processing ? 'Processing...' : 'Transform' }}
         </button>
