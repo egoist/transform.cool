@@ -19,7 +19,8 @@
     "coffeescript": "^2.0.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "svgr": "^1.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"

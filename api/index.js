@@ -62,6 +62,13 @@ const transformFns = [
     fn(code) {
       return require('coffeescript').compile(code)
     }
+  },
+  {
+    from: 'svg',
+    to: 'react',
+    fn(code) {
+      return require('svgr').default(code)
+    }
   }
 ]
 

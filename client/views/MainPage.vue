@@ -68,6 +68,7 @@ import 'codemirror/mode/jsx/jsx'
 import 'codemirror/mode/css/css'
 import 'codemirror/mode/stylus/stylus'
 import 'codemirror/mode/coffeescript/coffeescript'
+import 'codemirror/mode/htmlmixed/htmlmixed'
 
 const PAIRS = [
   {
@@ -114,6 +115,14 @@ const PAIRS = [
     toName: 'JavaScript',
     fromLang: 'coffeescript',
     toLang: 'javascript'
+  },
+  {
+    from: 'svg',
+    to: 'react',
+    fromName: 'SVG',
+    toName: 'React',
+    fromLang: 'htmlmixed',
+    toLang: 'jsx'
   }
 ]
 
