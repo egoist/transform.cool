@@ -55,6 +55,13 @@ const transformFns = [
       const stylus = require('stylus')
       return promisify(stylus.render)(code, { filename: 'nope.css' })
     }
+  },
+  {
+    from: 'coffeescript',
+    to: 'js',
+    fn(code) {
+      return require('coffeescript').compile(code)
+    }
   }
 ]
 

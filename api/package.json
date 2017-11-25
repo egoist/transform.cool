@@ -16,6 +16,7 @@
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-react-to-vue": "^0.2.0",
     "buble": "^0.18.0",
+    "coffeescript": "^2.0.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "stylus": "^0.54.5"

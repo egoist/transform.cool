@@ -67,6 +67,7 @@ import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/jsx/jsx'
 import 'codemirror/mode/css/css'
 import 'codemirror/mode/stylus/stylus'
+import 'codemirror/mode/coffeescript/coffeescript'
 
 const PAIRS = [
   {
@@ -105,6 +106,14 @@ const PAIRS = [
     toName: 'CSS',
     fromLang: 'text/x-styl',
     toLang: 'css'
+  },
+  {
+    from: 'coffeescript',
+    to: 'js',
+    fromName: 'CoffeeScript',
+    toName: 'JavaScript',
+    fromLang: 'coffeescript',
+    toLang: 'javascript'
   }
 ]
 
@@ -144,18 +153,19 @@ export default {
     },
 
     inputEditorOptions() {
-      if (!this.matchedPair) return {}
-
       return {
-        mode: this.matchedPair.fromLang
+        mode: this.matchedPair && this.matchedPair.fromLang,
+        tabSize: 2,
+        indentWithTabs: false
       }
     },
 
     outputEditorOptions() {
-      if (!this.matchedPair) return {}
-
       return {
-        mode: this.matchedPair.toLang
+        mode: this.matchedPair && this.matchedPair.toLang,
+        tabSize: 2,
+        indentWithTabs: false,
+        readOnly: true
       }
     }
   },
