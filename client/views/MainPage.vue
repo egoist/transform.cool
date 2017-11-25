@@ -1,29 +1,6 @@
 <template>
   <div class="page main-page">
     <div class="sidebar">
-      <div class="select-from">
-        <label for="">From</label>
-        <select v-model="from">
-          <option 
-            :value="pair.from" 
-            v-for="pair in PAIRS_GROUPED.from" 
-            :key="pair.from">
-            {{ pair.fromName }}
-          </option>
-        </select>
-      </div>
-
-      <div class="select-to" v-if="from">
-        <label for="">To</label>
-        <select v-model="to">
-          <option 
-            :value="pair.to" 
-            v-for="pair in getPairsByFrom(from)"
-            :key="pair.to">
-            {{ pair.toName }}
-          </option>  
-        </select>
-      </div>
 
       <div v-if="from === 'babel' && to === 'js'" class="transform-options">
         <label class="label">
@@ -37,19 +14,46 @@
         </label>
       </div>
 
-      <div class="controls" v-if="from && input">
-        <button :disabled="procesing" type="button" @click="handleTransform">
-          {{ processing ? 'Processing...' : 'Transform' }}
-        </button>
-      </div>
       <div>version: <a href="https://github.com/egoist/transform.cool">{{ websiteVersion }}</a></div>
     </div>
 
     <div class="main">
       <div class="editor input-editor">
+        <div class="editor-head">
+          <div class="select-from">
+            <select v-model="from">
+              <option disabled value="">Select source format</option>
+              <option 
+                :value="pair.from" 
+                v-for="pair in PAIRS_GROUPED.from" 
+                :key="pair.from">
+                {{ pair.fromName }}
+              </option>
+            </select>
+          </div>
+
+          <div class="controls" v-if="from && input">
+            <button :disabled="procesing" type="button" @click="handleTransform">
+              {{ processing ? 'Processing...' : 'Transform' }}
+            </button>
+          </div>
+        </div>
         <code-mirror v-model="input" :options="inputEditorOptions"></code-mirror>
       </div>
       <div class="editor output-editor">
+        <div class="editor-head">
+          <div class="select-to" v-if="from">
+            <select v-model="to">
+              <option disabled value="">Select target format</option>
+              <option 
+                :value="pair.to" 
+                v-for="pair in getPairsByFrom(from)"
+                :key="pair.to">
+                {{ pair.toName }}
+              </option>  
+            </select>
+          </div>
+        </div>
         <code-mirror v-model="output" :options="outputEditorOptions"></code-mirror>
       </div>
     </div>
@@ -233,13 +237,23 @@ export default {
     width: 50%
     &:first-child
       border-right: 1px solid #e2e2e2
+    .editor-head
+      padding: 0 10px
+      height: 40px
+      display: flex
+      align-items: center
+      border-bottom: 1px solid #e2e2e2
 
 .main-page
   display: flex
+
+.controls
+  margin-left: 10px
 </style>
 
 <style lang="stylus">
 .CodeMirror
-  height: 100%
+  height: calc(100% - 40px)
+  padding: 7px
 </style>
 
