@@ -61,8 +61,12 @@ import CodeMirror from 'vue-cm'
 import axios from 'axios'
 import dedupe from 'dedupe'
 import notie from 'notie'
+
+// @todo: We really should lazy-load the followings
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/jsx/jsx'
+import 'codemirror/mode/css/css'
+import 'codemirror/mode/stylus/stylus'
 
 const PAIRS = [
   {
@@ -93,12 +97,20 @@ const PAIRS = [
     toLang: 'jsx',
     fromName: 'React',
     toName: 'Vue'
+  },
+  {
+    from: 'stylus',
+    to: 'css',
+    fromName: 'Stylus',
+    toName: 'CSS',
+    fromLang: 'text/x-styl',
+    toLang: 'css'
   }
 ]
 
 const PAIRS_GROUPED = {
-  from: dedupe(PAIRS, p => p.from), // @todo: dedupe by "from"
-  to: dedupe(PAIRS, p => p.to) // @todo: dedupe by "to"
+  from: dedupe(PAIRS, p => p.from),
+  to: dedupe(PAIRS, p => p.to)
 }
 
 export default {

@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const { promisify } = require('util')
 
 const app = express()
 
@@ -46,6 +47,14 @@ const transformFns = [
         babelrc: false
       }).code
     }
+  },
+  {
+    from: 'stylus',
+    to: 'css',
+    fn(code) {
+      const stylus = require('stylus')
+      return promisify(stylus.render)(code, { filename: 'nope.css' })
+    }
   }
 ]
 
@@ -54,7 +63,7 @@ function getTransformFn({ from, to }) {
   return res && res.fn
 }
 
-app.post('/transform', (req, res) => {
+app.post('/transform', async (req, res) => {
   const {
     from,
     to,
@@ -65,7 +74,7 @@ app.post('/transform', (req, res) => {
   const transformFn = getTransformFn({ from, to })
   if (transformFn) {
     try {
-      const output = transformFn(input, transformOptions)
+      const output = await transformFn(input, transformOptions)
       res.send({
         output
       })
