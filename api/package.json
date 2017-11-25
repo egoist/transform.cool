@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.32",
+    "@babel/preset-es2015": "^7.0.0-beta.32",
+    "@babel/preset-es2016": "^7.0.0-beta.32",
+    "@babel/preset-es2017": "^7.0.0-beta.32",
+    "babel-plugin-syntax-class-properties": "^6.13.0",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-react-to-vue": "^0.2.0",
+    "buble": "^0.18.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}

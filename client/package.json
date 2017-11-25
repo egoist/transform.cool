@@ -1,0 +1,27 @@
+{
+  "name": "transformcool-client",
+  "productName": "transform.cool",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "poi",
+    "build": "poi build"
+  },
+  "devDependencies": {
+    "poi": "^9.5.4",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "cm-highlight": "^0.1.1",
+    "codemirror": "^5.32.0",
+    "dedupe": "^2.1.0",
+    "notie": "^4.3.1",
+    "vue": "^2.5.8",
+    "vue-cm": "^1.1.0",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.8"
+  }
+}
