@@ -151,9 +151,10 @@ const PAIRS_GROUPED = {
 
 export default {
   data() {
+    const { from = '', to = '' } = this.$route.query
     return {
-      from: '',
-      to: '',
+      from,
+      to,
       input: '',
       output: '',
       editorOptions: {
