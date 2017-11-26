@@ -167,9 +167,16 @@ export default {
     }
   },
 
+  syncDataToQuery: {
+    from: 'from',
+    to: 'to'
+  },
+
   watch: {
-    matchedPair() {
-      this.transformOptions = this.matchedPair.transformOptions
+    matchedPair(newValue) {
+      if (newValue) {
+        this.transformOptions = newValue.transformOptions
+      }
     }
   },
 
