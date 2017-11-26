@@ -133,6 +133,14 @@ const PAIRS = [
     toName: 'React',
     fromLang: 'htmlmixed',
     toLang: 'jsx'
+  },
+  {
+    from: 'html',
+    to: 'react-jsx',
+    fromName: 'HTML',
+    toName: 'React JSX',
+    fromLang: 'htmlmixed',
+    toLang: 'jsx'
   }
 ]
 

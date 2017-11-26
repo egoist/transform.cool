@@ -69,6 +69,15 @@ const transformFns = [
     fn(code) {
       return require('svgr').default(code)
     }
+  },
+  {
+    from: 'html',
+    to: 'react-jsx',
+    fn(code) {
+      return require('h2x-core').transform(code, {
+        plugins: [require('h2x-plugin-jsx').default]
+      })
+    }
   }
 ]
 

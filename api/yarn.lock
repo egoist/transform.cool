@@ -1379,7 +1379,7 @@ h2x-parse@^0.1.0:
   dependencies:
     jsdom "11.1.0"
 
-h2x-plugin-jsx@^0.1.6:
+h2x-plugin-jsx@^0.1.6, h2x-plugin-jsx@^0.1.8:
   version "0.1.8"
   resolved "http://registry.npm.taobao.org/h2x-plugin-jsx/download/h2x-plugin-jsx-0.1.8.tgz#f8bacb6b8c22844477e40be1167fa4e5d44b229a"
   dependencies:
