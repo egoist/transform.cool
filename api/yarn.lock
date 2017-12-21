@@ -171,6 +171,14 @@
   version "7.0.0-beta.32"
   resolved "http://registry.npm.taobao.org/@babel/plugin-check-constants/download/@babel/plugin-check-constants-7.0.0-beta.32.tgz#0a99744c55bfeb2ad77f94210f8dff2af435fa5b"
 
+"@babel/plugin-syntax-flow@7.0.0-beta.35":
+  version "7.0.0-beta.35"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-flow/-/plugin-syntax-flow-7.0.0-beta.35.tgz#424f2c99c24cc0432def3afb898c8b80bfcc269e"
+
+"@babel/plugin-syntax-typescript@7.0.0-beta.35":
+  version "7.0.0-beta.35"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-typescript/-/plugin-syntax-typescript-7.0.0-beta.35.tgz#f47c5dea85d3bfa992de9e3070b6b19be9c42a0e"
+
 "@babel/plugin-transform-arrow-functions@7.0.0-beta.32":
   version "7.0.0-beta.32"
   resolved "http://registry.npm.taobao.org/@babel/plugin-transform-arrow-functions/download/@babel/plugin-transform-arrow-functions-7.0.0-beta.32.tgz#d935eb1780be3d6d1d16e53efb330f81e01a6317"
@@ -219,6 +227,12 @@
   resolved "http://registry.npm.taobao.org/@babel/plugin-transform-exponentiation-operator/download/@babel/plugin-transform-exponentiation-operator-7.0.0-beta.32.tgz#e7d6c516d783b6479251b8b12020667f1d0b06f7"
   dependencies:
     "@babel/helper-builder-binary-assignment-operator-visitor" "7.0.0-beta.32"
+
+"@babel/plugin-transform-flow-strip-types@^7.0.0-beta.35":
+  version "7.0.0-beta.35"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-flow-strip-types/-/plugin-transform-flow-strip-types-7.0.0-beta.35.tgz#c7811c6be36a9829c01e12d37e7efbc76a5c14c6"
+  dependencies:
+    "@babel/plugin-syntax-flow" "7.0.0-beta.35"
 
 "@babel/plugin-transform-for-of@7.0.0-beta.32":
   version "7.0.0-beta.32"
@@ -305,6 +319,12 @@
 "@babel/plugin-transform-typeof-symbol@7.0.0-beta.32":
   version "7.0.0-beta.32"
   resolved "http://registry.npm.taobao.org/@babel/plugin-transform-typeof-symbol/download/@babel/plugin-transform-typeof-symbol-7.0.0-beta.32.tgz#f819960bcd339fa557ae16c28561852d7a6d1ce6"
+
+"@babel/plugin-transform-typescript@^7.0.0-beta.35":
+  version "7.0.0-beta.35"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.0.0-beta.35.tgz#0602f98d4e0cb291296e1b91e826ab123094e9bf"
+  dependencies:
+    "@babel/plugin-syntax-typescript" "7.0.0-beta.35"
 
 "@babel/plugin-transform-unicode-regex@7.0.0-beta.32":
   version "7.0.0-beta.32"

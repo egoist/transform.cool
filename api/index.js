@@ -78,6 +78,30 @@ const transformFns = [
         plugins: [require('h2x-plugin-jsx').default]
       })
     }
+  },
+  {
+    from: 'flow',
+    to: 'js',
+    fn(code) {
+      return require('@babel/core').transform(code, {
+        babelrc: false,
+        plugins: [
+          '@babel/plugin-transform-flow-strip-types'
+        ]
+      }).code
+    }
+  },
+  {
+    from: 'typescript',
+    to: 'js',
+    fn(code) {
+      return require('@babel/core').transform(code, {
+        babelrc: false,
+        plugins: [
+          '@babel/plugin-transform-typescript'
+        ]
+      }).code
+    }
   }
 ]
 

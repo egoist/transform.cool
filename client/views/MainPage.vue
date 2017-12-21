@@ -141,6 +141,22 @@ const PAIRS = [
     toName: 'React JSX',
     fromLang: 'htmlmixed',
     toLang: 'jsx'
+  },
+  {
+    from: 'flow',
+    to: 'js',
+    fromName: 'Flow',
+    toName: 'JavaScript',
+    fromLang: 'javascript',
+    toLang: 'javascript'
+  },
+  {
+    from: 'typescript',
+    to: 'js',
+    fromName: 'TypeScript',
+    toName: 'JavaScript',
+    fromLang: 'text/typescript',
+    toLang: 'javascript'
   }
 ]
 
