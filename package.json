@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "shipit-cli": "^3.0.0",
+    "shipit-deploy": "^2.5.1"
+  }
+}

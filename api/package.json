@@ -23,6 +23,7 @@
     "express": "^4.16.2",
     "h2x-core": "^0.1.6",
     "h2x-plugin-jsx": "^0.1.8",
+    "prettier": "^1.9.2",
     "stylus": "^0.54.5",
     "svgr": "^1.1.0"
   },

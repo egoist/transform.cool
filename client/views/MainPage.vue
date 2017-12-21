@@ -3,6 +3,7 @@
     <div class="sidebar">
 
       <div v-if="from === 'babel' && to === 'js'" class="transform-options">
+        <h2>Transform options</h2>
         <label class="label">
           <input type="checkbox" v-model="transformOptions.es2015" /> ES2015
         </label>
@@ -14,7 +15,27 @@
         </label>
       </div>
 
-      <div>version: <a href="https://github.com/egoist/transform.cool">{{ websiteVersion }}</a></div>
+      <div class="prettier-options">
+        <h2>Prettier options</h2>
+        <p class="tip">If the output format is supported by <a href="https://prettier.io">Prettier</a>, we will prettify it!</p>
+        <label class="label">
+          <input type="checkbox" v-model="prettierOptions.semi"> Semicolon
+        </label>
+        <label class="label">
+          <input type="checkbox" v-model="prettierOptions.singleQuote"> Single quote
+        </label>
+        <label class="label">
+          <input type="number" min="0" max="200" v-model.number="prettierOptions.printWidth"> Print width
+        </label>
+        <label class="label">
+          <input type="number" step="2" min="2" max="8" v-model.number="prettierOptions.tabWidth"> Tab width
+        </label>
+        <label class="label">
+          <input type="checkbox" v-model="prettierOptions.useTabs"> Use tabs
+        </label>
+      </div>
+
+      <div class="version">version: <a href="https://github.com/egoist/transform.cool">{{ websiteVersion }}</a></div>
     </div>
 
     <div class="main">
@@ -178,8 +199,19 @@ export default {
       },
       websiteVersion: process.env.WEBSITE_VERSION,
       PAIRS_GROUPED,
-      transformOptions: null,
-      processing: false
+      transformOptions: {
+        es2015: true,
+        es2016: true,
+        es2017: true
+      },
+      processing: false,
+      prettierOptions: {
+        semi: false,
+        singleQuote: true,
+        printWidth: 80,
+        tabWidth: 2,
+        useTabs: false
+      }
     }
   },
 
@@ -231,7 +263,8 @@ export default {
           from: this.from,
           to: this.to,
           input: this.input,
-          transformOptions: this.transformOptions
+          transformOptions: this.transformOptions,
+          prettierOptions: this.prettierOptions
         }
       }).then(res => res.data)
       if (message) {
@@ -295,6 +328,28 @@ export default {
 
 .controls
   margin-left: 10px
+
+.version
+  margin-top: 20px
+
+.tip 
+  font-size: 13px
+  color: #778087
+
+.transform-options,
+.prettier-options
+  border: 1px solid #e2e2e2
+  padding: 10px
+  margin-bottom: 10px
+  font-size: 14px
+  h2
+    margin: 0 0 10px 0
+    font-weight: 500
+    font-size: 1rem
+  .tip
+    margin: 0 0 10px 0
+  input[type="number"]
+    width: 60px
 </style>
 
 <style lang="stylus">

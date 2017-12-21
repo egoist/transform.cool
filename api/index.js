@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const { promisify } = require('util')
+const babel = require('@babel/core')
+const prettier = require('prettier')
 
 const app = express()
 
@@ -15,7 +17,7 @@ const transformFns = [
   {
     from: 'babel',
     to: 'js',
-    fn(code, { es2015, es2016, es2017 } = {}) {
+    fn(code, { es2015, es2016, es2017 } = {}, prettierOptions) {
       const options = {
         presets: [
           ...(es2015 ? ['@babel/preset-es2015'] : []),
@@ -24,21 +26,23 @@ const transformFns = [
         ],
         babelrc: false
       }
-      return require('@babel/core').transform(code, options).code
+      const output = require('@babel/core').transform(code, options).code
+      return prettier.format(output, prettierOptions)
     }
   },
   {
     from: 'buble',
     to: 'js',
-    fn(code, options) {
-      return require('buble').transform(code, options).code
+    fn(code, options, prettierOptions) {
+      const output = require('buble').transform(code, options).code
+      return prettier.format(output, prettierOptions)
     }
   },
   {
     from: 'react',
     to: 'vue',
-    fn(code) {
-      return require('@babel/core').transform(code, {
+    fn(code, options, prettierOptions) {
+      const output = babel.transform(code, {
         plugins: [
           'syntax-class-properties',
           'syntax-jsx',
@@ -46,61 +50,71 @@ const transformFns = [
         ],
         babelrc: false
       }).code
+      return prettier.format(output, prettierOptions)
     }
   },
   {
     from: 'stylus',
     to: 'css',
-    fn(code) {
+    async fn(code, options, prettierOptions) {
       const stylus = require('stylus')
-      return promisify(stylus.render)(code, { filename: 'nope.css' })
+      const output = await promisify(stylus.render)(code, { filename: 'nope.css' })
+      return prettier.format(output, {
+        ...prettierOptions,
+        parser: 'css'
+      })
     }
   },
   {
     from: 'coffeescript',
     to: 'js',
-    fn(code) {
-      return require('coffeescript').compile(code)
+    fn(code, options, prettierOptions) {
+      const output = require('coffeescript').compile(code)
+      return prettier.format(output, prettierOptions)
     }
   },
   {
     from: 'svg',
     to: 'react',
-    fn(code) {
-      return require('svgr').default(code)
+    fn(code, options, prettierOptions) {
+      const output = require('svgr').default(code)
+      return prettier.format(output, prettierOptions) 
     }
   },
   {
     from: 'html',
     to: 'react-jsx',
-    fn(code) {
-      return require('h2x-core').transform(code, {
+    fn(code, options, prettierOptions) {
+      const output = require('h2x-core').transform(code, {
         plugins: [require('h2x-plugin-jsx').default]
       })
+      return prettier.format(output, prettierOptions)
     }
   },
   {
     from: 'flow',
     to: 'js',
-    fn(code) {
-      return require('@babel/core').transform(code, {
+    fn(code, options, prettierOptions) {
+      const output = babel.transform(code, {
         babelrc: false,
         plugins: [
           '@babel/plugin-transform-flow-strip-types'
         ]
       }).code
+      return prettier.format(output, prettierOptions)
     }
   },
   {
     from: 'typescript',
     to: 'js',
-    fn(code) {
-      return require('@babel/core').transform(code, {
+    fn(code, options, prettierOptions) {
+      const output = babel.transform(code, {
         babelrc: false,
         plugins: [
           '@babel/plugin-transform-typescript'
         ]
       }).code
+      return prettier.format(output, prettierOptions)
     }
   }
 ]
@@ -115,17 +129,23 @@ app.post('/transform', async (req, res) => {
     from,
     to,
     input,
-    transformOptions
+    transformOptions,
+    prettierOptions
   } = req.body
 
   const transformFn = getTransformFn({ from, to })
   if (transformFn) {
     try {
-      const output = await transformFn(input, transformOptions)
+      const output = await transformFn(
+        input,
+        transformOptions, 
+        prettierOptions
+      )
       res.send({
         output
       })
     } catch (err) {
+      console.error(err)
       res.send({
         message: err.message
       })
