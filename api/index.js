@@ -157,5 +157,20 @@ app.post('/transform', async (req, res) => {
   }
 })
 
+app.post('/prettier', async (req, res) => {
+  const { source, options } = req.body
+  if (!source) return res.status(500).send({
+    error: 'No input code'
+  })
+  try {
+    const code = prettier.format(source, options)
+    res.send({ code })
+  } catch (err) {
+    res.status(500).send({
+      error: err.stack
+    })
+  }
+})
+
 app.listen(2017)
 console.log(`Open http://localhost:2017`)
